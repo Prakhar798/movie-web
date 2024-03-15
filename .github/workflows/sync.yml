@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: gh repo sync Prakhar798/movie-web 
+    - run: gh repo sync Prakhar798/movie-web -b master
       env:
         GH_TOKEN: ${{ github.token }}
     - uses: gautamkrishnar/keepalive-workflow@v1
