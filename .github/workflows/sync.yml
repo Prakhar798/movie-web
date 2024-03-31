@@ -1,20 +1,26 @@
 name: Sync fork
-
+ 
+permissions:
+  contents: write
+ 
 on:
   schedule:
-  - cron: "0 * * * *"
-  push:
-    branches:
-    - "*"
-    paths:
-    - .github/workflows/sync.yml
-
+    - cron: "0 * * * *"
+  workflow_dispatch:
+ 
 jobs:
   sync:
+    name: Sync fork
     runs-on: ubuntu-latest
+    if: ${{ github.event.repository.fork }}
+ 
     steps:
-    - uses: actions/checkout@v3
-    - run: gh repo sync Prakhar798/movie-web --branch master
-      env:
-        GH_TOKEN: ${{ github.token }}
-    - uses: gautamkrishnar/keepalive-workflow@v1
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Sync fork
+        run: gh repo sync ${{ github.repository }} --branch master
+        env:
+          GH_TOKEN: ${{ github.token }}
+ 
+      - uses: gautamkrishnar/keepalive-workflow@v1
