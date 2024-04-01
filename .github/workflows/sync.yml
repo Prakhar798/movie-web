@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Sync fork
-        run: gh repo sync ${{ github.repository }}
+        run: gh repo sync ${{ github.repository }} --branch master
         env:
           GH_TOKEN: ${{ github.token }}
 
