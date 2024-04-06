@@ -23,4 +23,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Sync fork 2 
+        run: gh repo sync ${{ github.repository }} --branch master
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - uses: gautamkrishnar/keepalive-workflow@v1
