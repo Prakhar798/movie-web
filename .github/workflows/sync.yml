@@ -17,7 +17,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Sync fork
         run: gh repo sync ${{ github.repository }} --branch master
         env:
